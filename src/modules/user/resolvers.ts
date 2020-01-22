@@ -1,17 +1,26 @@
 import { ResolverMap } from "../../interfaces/graphql";
-import { getConnection } from "typeorm";
-import { User } from "../../entity/User";
+import { UserUpdater } from "./utils/userUpdater";
+import { UserCreator } from "./utils/userCreator";
+import { UserReader } from "./utils/userReader";
 
 export const resolvers: ResolverMap = {
     Query: {
-        users: async () => await getConnection().manager.find(User)
+        users: async () => {
+            const userReader = new UserReader()
+            return await userReader.GetUsers()
+        }
     },
     Mutation: {
-        createUser: async (_, { username }) => {
-            const user = new User()
-            user.username = username
-            await getConnection().manager.save(user)
-            return user.id
+        createUser: async (_, { user }) => {
+            const userCreator = new UserCreator()
+            await userCreator.Create(user)
+            return userCreator.GeneratedMap
+        },
+
+        updateUser: async (_, { id, user }) => {
+            const userUpdater = new UserUpdater(id, user)
+            await userUpdater.update()
+            return userUpdater.Changes
         }
     }
 }

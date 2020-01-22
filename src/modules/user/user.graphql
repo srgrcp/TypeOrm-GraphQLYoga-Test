@@ -1,4 +1,11 @@
 type User {
-    id: Int!
+    id: String!
     username: String!
+    createDate: String!
+    updateDate: String!
+}
+
+input UserInput {
+    username: String
+    password: String
 }

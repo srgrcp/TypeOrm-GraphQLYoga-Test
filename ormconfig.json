@@ -6,6 +6,7 @@
    "password": "srgrcp",
    "database": "test",
    "synchronize": true,
+   "dropSchema": true,
    "logging": false,
    "entities": [
       "src/entity/**/*.ts"

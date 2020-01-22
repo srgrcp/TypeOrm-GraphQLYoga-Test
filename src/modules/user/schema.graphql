@@ -1,8 +1,9 @@
 type Query {
   users: [User!]
+  user(id: String!): User
 }
 
 type Mutation {
-  user(id: Int!): User
-  createUser(username: String): Int
+  createUser(user: UserInput): GeneratedMap
+  updateUser(id: String, user: UserInput): Int
 }

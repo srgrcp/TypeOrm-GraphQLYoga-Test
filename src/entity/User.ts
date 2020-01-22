@@ -1,12 +1,22 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { IUser } from "./IUser";
 
 @Entity()
-export class User {
+export class User implements IUser {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: number
 
-    @Column({ unique: true })
-    username: string;
+    @Column({ unique: true, nullable: false })
+    username: string
+
+    @Column({ nullable: false })
+    password: string
+
+    @CreateDateColumn()
+    createDate: Date
+
+    @UpdateDateColumn()
+    updateDate: Date
 
 }
