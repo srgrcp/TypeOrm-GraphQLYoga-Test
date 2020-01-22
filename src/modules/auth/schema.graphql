@@ -1,0 +1,9 @@
+type ILoginResponse {
+    token: String
+    success: Boolean!
+    path: String
+}
+
+type Mutation {
+    login(username: String, password: String): ILoginResponse
+}
