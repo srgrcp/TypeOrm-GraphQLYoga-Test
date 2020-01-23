@@ -4,7 +4,7 @@ import { TokenManager } from "./utils/tokenManager";
 
 export const resolvers: ResolverMap = {
     Mutation: {
-        login: async (_, { username, password }) => {
+        localLogin: async (_, { username, password }) => {
             const localLogin = new LocalLogin(username, password)
             const loginResponse = await localLogin.Login()
             if (!loginResponse.success)

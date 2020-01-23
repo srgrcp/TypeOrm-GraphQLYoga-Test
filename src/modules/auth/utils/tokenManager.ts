@@ -14,7 +14,7 @@ export class TokenManager {
         return JWT.sign(this.user, PRIVATE_KEY)
     }
 
-    static Verify = (token: string) => {
-        return JWT.verify(token, PRIVATE_KEY)
+    static Verify = (token: string): IUser => {
+        return JWT.verify(token, PRIVATE_KEY) as IUser
     }
 }

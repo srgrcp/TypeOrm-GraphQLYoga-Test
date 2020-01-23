@@ -5,7 +5,7 @@ import { IUser } from "./IUser";
 export class User implements IUser {
 
     @PrimaryGeneratedColumn('uuid')
-    id: number
+    id: string
 
     @Column({ unique: true, nullable: false })
     username: string

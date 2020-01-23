@@ -1,6 +1,7 @@
 import { GraphQLServer } from 'graphql-yoga'
 import { PORT, PUBLICHOST, ENV } from './envConsts'
 import { genSchema } from './utils.ts/genSchema'
+import { GetUserMiddleware } from './modules/auth/utils/getUserMiddleware'
 
 export class ServerConnection {
     private graphqlServer: GraphQLServer
@@ -10,7 +11,8 @@ export class ServerConnection {
             schema: genSchema(),
             context: ({ request }) => ({
                 req: request
-            })
+            }),
+            middlewares: [GetUserMiddleware]
         })
     }
 
